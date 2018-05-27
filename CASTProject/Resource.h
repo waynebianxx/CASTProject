@@ -10,8 +10,11 @@
 #define IDD_DIALOG2                     313
 #define IDD_DIALOG_PLAYBACKSET          315
 #define IDD_DIALOG4                     319
+#define IDD_DIALOG_FINDSET              319
 #define IDD_DIALOG5                     322
+#define IDD_DIALOG_IMGCMPSET            322
 #define IDD_DIALOG6                     324
+#define IDD_DIALOG_INNRFCTSET           324
 #define IDC_RADIO1                      1000
 #define IDC_RADIO2                      1001
 #define IDC_RADIO3                      1002
@@ -28,6 +31,7 @@
 #define IDC_EDIT5                       1013
 #define IDC_BUTTON3                     1013
 #define IDC_RADIO7                      1013
+#define IDC_BUTTON_PBE                  1013
 #define IDC_EDIT6                       1014
 #define IDC_RADIO8                      1014
 #define IDC_EDIT7                       1015
@@ -40,12 +44,21 @@
 #define IDC_EDIT11                      1019
 #define IDC_EDIT_LB                     1019
 #define IDC_EDIT12                      1020
+#define IDC_BUTTON_PBS                  1020
 #define IDC_EDIT13                      1021
+#define IDC_EDIT_STRPBS                 1021
 #define IDC_EDIT14                      1022
+#define IDC_EDIT_STRPBE                 1022
 #define IDC_EDIT15                      1023
+#define IDC_EDIT_PBSPEED                1023
 #define IDC_COMBO2                      1024
+#define IDC_EDIT_PBSKIPFRM              1024
 #define IDC_EDIT16                      1025
+#define IDC_RADIO_NORMAL                1025
 #define IDC_EDIT17                      1026
+#define IDC_RADIO_SCROLL                1026
+#define IDC_RADIO_CUR                   1027
+#define IDC_RADIO_SUB                   1028
 #define ID_32771                        32771
 #define ID_LoadFile                     32772
 #define ID_32773                        32773
@@ -54,14 +67,68 @@
 #define ID_32776                        32776
 #define ID_PlayBack                     32777
 #define ID_ShowSet                      32778
+#define ID_32779                        32779
+#define ID_SUB_BLOCK                    32780
+#define ID_32781                        32781
+#define ID_FIND                         32782
+#define ID_32783                        32783
+#define ID_32784                        32784
+#define ID_32785                        32785
+#define ID_32786                        32786
+#define ID_32787                        32787
+#define ID_AUXD_GENRPT                  32788
+#define ID_AUXD_TIMECNTCUV              32789
+#define ID_32790                        32790
+#define ID_32791                        32791
+#define ID_32792                        32792
+#define ID_                             32793
+#define ID_RADCAL_STCHRM                32794
+#define ID_RADCAL_STCHUNRM              32795
+#define ID_32796                        32796
+#define ID_RADCAL                       32797
+#define ID_RADCAL_BATCHP                32798
+#define ID_32799                        32799
+#define ID_32800                        32800
+#define ID_32801                        32801
+#define ID_32802                        32802
+#define ID_32803                        32803
+#define ID_RADCAL_EVSPECCUV             32804
+#define ID_RADCAL_SERCUV                32805
+#define ID_RADCAL_INTIMECUV             32806
+#define ID_RADCAL_GAINCUV               32807
+#define ID_32808                        32808
+#define ID_32809                        32809
+#define ID_32810                        32810
+#define ID_32811                        32811
+#define ID_32812                        32812
+#define ID_32813                        32813
+#define ID_32814                        32814
+#define ID_RADCAL_SNR                   32815
+#define ID_RADCAL_DYNRAG                32816
+#define ID_RADCAL_                      32817
+#define ID_RADCAL_ABSCOEF               32818
+#define ID_RADCAL_RELCOEF               32819
+#define ID_RADCAL_RESPOUT               32820
+#define ID_RADCAL_PERC                  32821
+#define ID_32822                        32822
+#define ID_32823                        32823
+#define ID_32824                        32824
+#define ID_INNRFCT_SET                  32825
+#define ID_INNRFCT_CUVP                 32826
+#define ID_32827                        32827
+#define ID_32828                        32828
+#define ID_HLTHCHK_STATIC               32829
+#define ID_HLTHCHK_DYNMC                32830
+#define ID_32831                        32831
+#define ID_IMGCMP_SET                   32832
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        310
-#define _APS_NEXT_COMMAND_VALUE         32779
-#define _APS_NEXT_CONTROL_VALUE         1020
+#define _APS_NEXT_COMMAND_VALUE         32833
+#define _APS_NEXT_CONTROL_VALUE         1029
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

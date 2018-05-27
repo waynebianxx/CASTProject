@@ -7,16 +7,22 @@
 #include <vector>
 
 #include "include/CAST_SrcData.h"
+#include "FindDataDlg.h"
 
-typedef struct 
+typedef struct
 {
 	int m_TimeIntvl;
 	int m_SkipFnum;
-	int m_ShowMode;
+	int m_ShowMode;//1 is normal show, 2 is scroll
 	bool b_SubPath;
 	std::vector<CString> str_Path;
-	int cnt;
+	int m_FrameCnt;
+	int m_LineCnt;
 	int m_ttNum;
+	//used to scroll mode
+	BYTE* pSrc1;
+	BYTE* pSrc2;
+	BYTE* pDst;
 }PLAYBACK_PARAM;
 
 class CCASTProjectView : public CScrollView
@@ -70,8 +76,15 @@ public:
 	CDC MemDc;
 	CRect m_ShImgRect;
 	CRect m_RealImgRect;
+	bool m_bSubBlkShow;
+	CRect m_SubShowRect;
 	//play back set
 	PLAYBACK_PARAM m_PBParam;
+	bool m_bPBPause;//play back pause, 'space key'
+	//mouse
+	CPoint m_MousePos;
+	//find data
+	FindDataDlg FDDlg;
 public:
 	CAST_IMG CastImg;
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
@@ -83,8 +96,20 @@ public:
 	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
 	int DrawMemDc(bool b_create);
 	void BrowseCurrentAllFile(CString strDir);
+
+	//in this function, file load to CAST_SrcData, create cImage, copy data to cImage, set scroll view size, initial rect
+	int FileToShow(CString strFileName);
+
 	afx_msg void OnPlayback();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnUpdatePixinfo(CCmdUI *pCmdUI);
+	afx_msg void OnSubBlock();
+	afx_msg void OnUpdateSubBlock(CCmdUI *pCmdUI);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnFind();
+	afx_msg void OnImgcmpSet();
+	afx_msg void OnInnerfactSet();
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // CASTProjectView.cpp 中的调试版本

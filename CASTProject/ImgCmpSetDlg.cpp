@@ -12,7 +12,7 @@
 IMPLEMENT_DYNAMIC(ImgCmpSetDlg, CDialogEx)
 
 ImgCmpSetDlg::ImgCmpSetDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_DIALOG5, pParent)
+	: CDialogEx(IDD_DIALOG_IMGCMPSET, pParent)
 {
 
 }

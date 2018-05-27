@@ -147,6 +147,58 @@ BEGIN
         MENUITEM "像元信息",                        ID_PixInfo
         MENUITEM "显示设置",                        ID_ShowSet
         MENUITEM "回放",                          ID_PlayBack
+        MENUITEM "局部显示",                        ID_SUB_BLOCK
+        MENUITEM "查找",                          ID_FIND
+    END
+    POPUP "辅助数据"
+    BEGIN
+        MENUITEM "生成诊断报告",                      ID_AUXD_GENRPT
+        POPUP "绘制"
+        BEGIN
+            MENUITEM "时间计数曲线",                      ID_AUXD_TIMECNTCUV
+            MENUITEM "整秒时刻曲线",                      ID_32786
+            MENUITEM "时钟频率曲线",                      ID_32787
+        END
+    END
+    POPUP "辐射定标分析"
+    BEGIN
+        POPUP "图像拼接"
+        BEGIN
+            MENUITEM "去除搭接",                        ID_RADCAL_STCHRM
+            MENUITEM "不去除搭接",                       ID_RADCAL_STCHUNRM
+        END
+        MENUITEM "批处理",                         ID_RADCAL_BATCHP
+        POPUP "曲线绘制"
+        BEGIN
+            MENUITEM "各谱段输出",                       ID_RADCAL_EVSPECCUV
+            MENUITEM "不同级数",                        ID_RADCAL_SERCUV
+            MENUITEM "不同积分时间",                      ID_RADCAL_INTIMECUV
+            MENUITEM "不同增益",                        ID_RADCAL_GAINCUV
+        END
+        POPUP "计算功能"
+        BEGIN
+            MENUITEM "相机信噪比",                       ID_RADCAL_SNR
+            MENUITEM "相机动态范围",                      ID_RADCAL_DYNRAG
+            MENUITEM "绝对定标系数",                      ID_RADCAL_ABSCOEF
+            MENUITEM "相对定标系数",                      ID_RADCAL_RELCOEF
+            MENUITEM "响应输出",                        ID_RADCAL_RESPOUT
+            MENUITEM "定标精度",                        ID_RADCAL_PERC
+        END
+        MENUITEM "设置",                          ID_32822
+    END
+    POPUP "内方位元素测试"
+    BEGIN
+        MENUITEM "设置",                          ID_INNRFCT_SET
+        MENUITEM "曲线优化",                        ID_INNRFCT_CUVP
+    END
+    POPUP "健康状态检查"
+    BEGIN
+        MENUITEM "静态检查",                        ID_HLTHCHK_STATIC
+        MENUITEM "动态检查",                        ID_HLTHCHK_DYNMC
+    END
+    POPUP "图像比对"
+    BEGIN
+        MENUITEM "设置",                          ID_IMGCMP_SET
     END
 END
 
@@ -191,7 +243,7 @@ BEGIN
     DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_DIALOG6 DIALOGEX 0, 0, 297, 251
+IDD_DIALOG_INNRFCTSET DIALOGEX 0, 0, 297, 251
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "内方位元素测试"
 FONT 10, "微软雅黑", 400, 0, 0x86
@@ -243,7 +295,7 @@ BEGIN
     LTEXT           "~",IDC_STATIC,234,58,8,8
 END
 
-IDD_DIALOG5 DIALOGEX 0, 0, 337, 243
+IDD_DIALOG_IMGCMPSET DIALOGEX 0, 0, 337, 243
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "图像比对设置"
 FONT 10, "微软雅黑", 400, 0, 0x86
@@ -276,7 +328,7 @@ BEGIN
     CONTROL         "倒序",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,185,192,29,10
 END
 
-IDD_DIALOG4 DIALOGEX 0, 0, 307, 199
+IDD_DIALOG_FINDSET DIALOGEX 0, 0, 307, 199
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "查找"
 FONT 10, "微软雅黑", 400, 0, 0x86
@@ -303,31 +355,31 @@ BEGIN
     PUSHBUTTON      "...",IDC_BUTTON1,215,131,18,14
 END
 
-IDD_DIALOG_PLAYBACKSET DIALOGEX 0, 0, 223, 188
+IDD_DIALOG_PLAYBACKSET DIALOGEX 0, 0, 223, 148
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "回放参数设置"
 FONT 10, "微软雅黑", 400, 0, 0x86
 BEGIN
-    DEFPUSHBUTTON   "确定",IDOK,78,160,50,14
-    LTEXT           "回放速度",IDC_STATIC,59,17,27,8
-    LTEXT           "ms",IDC_STATIC,133,17,10,8
-    LTEXT           "跳帧数量",IDC_STATIC,60,38,26,8
-    LTEXT           "回放规则",IDC_STATIC,60,79,26,8
-    LTEXT           "起始回放位置",IDC_STATIC,46,100,40,8
-    LTEXT           "终止回放位置",IDC_STATIC,46,121,40,8
-    EDITTEXT        IDC_EDIT1,92,17,40,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT2,92,38,40,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT3,92,96,40,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT4,92,117,40,14,ES_AUTOHSCROLL
-    CONTROL         "当前目录",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,92,79,38,10
-    CONTROL         "递归子目录",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,147,79,43,10
-    PUSHBUTTON      "...",IDC_BUTTON1,137,96,14,14
-    PUSHBUTTON      "...",IDC_BUTTON3,137,117,14,14
-    COMBOBOX        IDC_COMBO1,91,139,48,68,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "回放书签",IDC_STATIC,57,141,27,8
-    CONTROL         "正常显示",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_GROUP,92,61,42,10
-    CONTROL         "滚屏显示",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,147,61,42,10
-    LTEXT           "显示模式",IDC_STATIC,60,61,27,8
+    DEFPUSHBUTTON   "确定",IDOK,147,115,50,14
+    LTEXT           "回放速度",IDC_STATIC,31,23,27,8
+    LTEXT           "ms",IDC_STATIC,102,21,10,8
+    LTEXT           "跳帧数量",IDC_STATIC,119,23,26,8
+    LTEXT           "起始位置",IDC_STATIC,12,78,27,8
+    LTEXT           "终止位置",IDC_STATIC,12,99,27,8
+    EDITTEXT        IDC_EDIT_PBSPEED,61,21,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PBSKIPFRM,147,20,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STRPBS,40,76,156,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STRPBE,40,97,156,14,ES_AUTOHSCROLL
+    CONTROL         "当前目录",IDC_RADIO_CUR,"Button",BS_AUTORADIOBUTTON | WS_GROUP,119,51,38,10
+    CONTROL         "递归子目录",IDC_RADIO_SUB,"Button",BS_AUTORADIOBUTTON,161,51,43,10
+    PUSHBUTTON      "...",IDC_BUTTON_PBS,199,76,14,14
+    PUSHBUTTON      "...",IDC_BUTTON_PBE,199,96,14,14
+    COMBOBOX        IDC_COMBO1,49,116,84,68,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "回放书签",IDC_STATIC,20,118,27,8
+    CONTROL         "正常显示",IDC_RADIO_NORMAL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,26,51,42,10
+    CONTROL         "滚屏显示",IDC_RADIO_SCROLL,"Button",BS_AUTORADIOBUTTON,69,51,42,10
+    GROUPBOX        "回放模式",IDC_STATIC,18,40,91,28
+    GROUPBOX        "目录模式",IDC_STATIC,115,41,91,28
 END
 
 IDD_DIALOG2 DIALOGEX 0, 0, 214, 82
@@ -435,7 +487,7 @@ BEGIN
         BOTTOMMARGIN, 55
     END
 
-    IDD_DIALOG6, DIALOG
+    IDD_DIALOG_INNRFCTSET, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 290
@@ -443,7 +495,7 @@ BEGIN
         BOTTOMMARGIN, 244
     END
 
-    IDD_DIALOG5, DIALOG
+    IDD_DIALOG_IMGCMPSET, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 330
@@ -451,7 +503,7 @@ BEGIN
         BOTTOMMARGIN, 236
     END
 
-    IDD_DIALOG4, DIALOG
+    IDD_DIALOG_FINDSET, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 300
@@ -464,7 +516,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 216
         TOPMARGIN, 7
-        BOTTOMMARGIN, 181
+        BOTTOMMARGIN, 141
     END
 
     IDD_DIALOG2, DIALOG
@@ -489,17 +541,17 @@ END
 // AFX_DIALOG_LAYOUT
 //
 
-IDD_DIALOG6 AFX_DIALOG_LAYOUT
+IDD_DIALOG_INNRFCTSET AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
 
-IDD_DIALOG5 AFX_DIALOG_LAYOUT
+IDD_DIALOG_IMGCMPSET AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
 
-IDD_DIALOG4 AFX_DIALOG_LAYOUT
+IDD_DIALOG_FINDSET AFX_DIALOG_LAYOUT
 BEGIN
     0
 END

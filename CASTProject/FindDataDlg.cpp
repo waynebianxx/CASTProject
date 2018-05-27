@@ -12,7 +12,7 @@
 IMPLEMENT_DYNAMIC(FindDataDlg, CDialogEx)
 
 FindDataDlg::FindDataDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_DIALOG4, pParent)
+	: CDialogEx(IDD_DIALOG_FINDSET, pParent)
 {
 
 }

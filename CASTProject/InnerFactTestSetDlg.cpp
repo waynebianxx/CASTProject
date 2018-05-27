@@ -12,7 +12,7 @@
 IMPLEMENT_DYNAMIC(InnerFactTestSetDlg, CDialogEx)
 
 InnerFactTestSetDlg::InnerFactTestSetDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_DIALOG6, pParent)
+	: CDialogEx(IDD_DIALOG_INNRFCTSET, pParent)
 {
 
 }

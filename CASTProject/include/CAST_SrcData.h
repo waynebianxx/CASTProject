@@ -109,11 +109,14 @@ public:
 	AUXIL_DATA m_AuxData;
 	HEAD_INFO m_HeadData;
 	CImage cimg;
+	int m_CImgW;
+	int m_CImgH;
 	void LoadFile(const char* pFileName);
+	void ReadFile(const char* pFileName, BYTE*& pData);
 	void DataCfg();
 	inline BYTE GetPixValue(int x, int y) const {
 		return *((BYTE*)m_pImgData + y*m_LinePitch + x);
 	};
-	int CreateCImg();
-	int CopyDataToCImg(BIT_RANGE bitRange);
+	int CreateCImg(int& CImgW, int& CImgH);
+	int CopyDataToCImg(void* pData, int& ImgW, int& ImgH, BIT_RANGE bitRange = from15to8);
 };

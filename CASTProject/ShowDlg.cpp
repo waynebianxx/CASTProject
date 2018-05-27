@@ -12,7 +12,7 @@
 IMPLEMENT_DYNAMIC(ShowDlg, CDialogEx)
 
 ShowDlg::ShowDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_DIALOG1, pParent)
+	: CDialogEx(IDD_DIALOG_SHOWSET, pParent)
 {
 
 }

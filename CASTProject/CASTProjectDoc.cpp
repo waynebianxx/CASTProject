@@ -44,6 +44,7 @@ BOOL CCASTProjectDoc::OnNewDocument()
 
 	// TODO: 在此添加重新初始化代码
 	// (SDI 文档将重用该文档)
+	SetTitle(_T("China Academy of Space Technology"));
 
 	return TRUE;
 }

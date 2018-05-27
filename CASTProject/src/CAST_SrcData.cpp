@@ -17,6 +17,23 @@ CAST_IMG::~CAST_IMG()
 		cimg.Destroy();
 }
 
+void CAST_IMG::ReadFile(const char* pFileName, BYTE*& pData)
+{
+	//read file
+	FILE* pF = nullptr;
+	errno_t err;
+	if ((err = fopen_s(&pF, pFileName, "r")) == NULL)
+	{
+		fseek(pF, 0L, SEEK_END);
+		UINT32 fLen = ftell(pF);
+		fseek(pF, 0L, SEEK_SET);
+		pData = new BYTE[fLen];
+		fread(pData, 1, fLen, pF);
+		fclose(pF);
+	}
+	return;
+}
+
 void CAST_IMG::LoadFile(const char* pFileName)
 {
 	//read file
@@ -48,11 +65,13 @@ void CAST_IMG::DataCfg()
 	m_LinePitch = m_ImgW*m_BPP;
 }
 
-int CAST_IMG::CreateCImg()
+int CAST_IMG::CreateCImg(int& CImgW, int& CImgH)
 {
 	if (!cimg.IsNull())
 		cimg.Destroy();
-	cimg.Create(m_ImgW, m_ImgH, 8);
+	m_CImgW = CImgW;
+	m_CImgH = CImgH;
+	cimg.Create(m_CImgW, m_CImgH, 8);
 	RGBQUAD* ColorTable;
 	int MaxColors = 256;
 	ColorTable = new RGBQUAD[MaxColors];
@@ -65,29 +84,36 @@ int CAST_IMG::CreateCImg()
 	}
 	cimg.SetColorTable(0, MaxColors, ColorTable);
 	delete[]ColorTable;
-	CopyDataToCImg(from15to8);
 	return 1;
 }
 
-int CAST_IMG::CopyDataToCImg(BIT_RANGE bitRange)
+int CAST_IMG::CopyDataToCImg(void* pData, int& ImgW, int& ImgH, BIT_RANGE bitRange)
 {
 	if (cimg.IsNull())
 		return 0;
-	BYTE *pImg = (BYTE *)cimg.GetBits();
-	int step = cimg.GetPitch();
-	if (step < 0)
-	{
-		pImg = pImg + step*(cimg.GetHeight() - 1);
-		step = 0 - step;
-	}
-	UINT16* pSrc = (UINT16*)m_pImgData;
+	if ((ImgW != m_CImgW) || (ImgH != m_CImgH))
+		CreateCImg(ImgW,ImgH);
+	BYTE* pImg=NULL;
+	//show reverse
+//	BYTE *pImg = (BYTE *)cimg.GetBits();
+// 	int step = cimg.GetPitch();
+//  	if (step < 0)
+//  	{
+//  		pImg = pImg + step*(m_CImgH - 1);
+//  		step = 0 - step;
+//  	}
+	UINT16* pSrc = (UINT16*)pData;
 	int shiftBit = 8 - bitRange;
 	UINT32 srcIdx = 0, dstIdx = 0;
-	for (int i = 0; i != m_ImgH; ++i)
+	for (int i = 0; i != m_CImgH; ++i)
 	{
-		dstIdx = i*step;
-		for (int j = 0; j != m_ImgW; ++j)
-			pImg[dstIdx + j] = pSrc[srcIdx++]>>shiftBit;
+		//maybe show reverse
+// 		dstIdx = i*step;
+// 		for (int j = 0; j != m_CImgW; ++j)
+// 			*(pImg + dstIdx + j) = pSrc[srcIdx++] >> shiftBit;
+		pImg = (BYTE*)cimg.GetPixelAddress(0, i);
+		for (int j = 0; j != m_CImgW; ++j)
+			pImg[j] = pSrc[srcIdx++] >> shiftBit;
 	}
 	return 1;
 }
