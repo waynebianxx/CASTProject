@@ -6,6 +6,7 @@
 #define IDP_OLE_INIT_FAILED             100
 #define IDR_MAINFRAME                   128
 #define IDR_CASTProjectTYPE             130
+#define IDD_DIALOG_AUXLDATA             310
 #define IDD_DIALOG_SHOWSET              311
 #define IDD_DIALOG2                     313
 #define IDD_DIALOG_PLAYBACKSET          315
@@ -59,6 +60,7 @@
 #define IDC_RADIO_SCROLL                1026
 #define IDC_RADIO_CUR                   1027
 #define IDC_RADIO_SUB                   1028
+#define IDC_LIST_AUXLDATA               1029
 #define ID_32771                        32771
 #define ID_LoadFile                     32772
 #define ID_32773                        32773
@@ -121,14 +123,16 @@
 #define ID_HLTHCHK_DYNMC                32830
 #define ID_32831                        32831
 #define ID_IMGCMP_SET                   32832
+#define ID_32833                        32833
+#define ID_AUXLIDATA_SHOW               32834
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        310
-#define _APS_NEXT_COMMAND_VALUE         32833
-#define _APS_NEXT_CONTROL_VALUE         1029
+#define _APS_NEXT_RESOURCE_VALUE        313
+#define _APS_NEXT_COMMAND_VALUE         32835
+#define _APS_NEXT_CONTROL_VALUE         1030
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

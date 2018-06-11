@@ -33,7 +33,7 @@ BEGIN_MESSAGE_MAP(CCASTProjectView, CScrollView)
 	ON_COMMAND(ID_LoadFile, &CCASTProjectView::OnLoadfile)
 	ON_COMMAND(ID_PixInfo, &CCASTProjectView::OnPixinfo)
 	ON_WM_MOUSEMOVE()
-	ON_COMMAND(ID_32775, &CCASTProjectView::OnShowSet)
+	ON_COMMAND(ID_ShowSet, &CCASTProjectView::OnShowSet)
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEHWHEEL()
 	ON_WM_MOUSEWHEEL()
@@ -48,6 +48,7 @@ BEGIN_MESSAGE_MAP(CCASTProjectView, CScrollView)
 	ON_COMMAND(ID_IMGCMP_SET, &CCASTProjectView::OnImgcmpSet)
 	ON_COMMAND(ID_INNRFCT_SET, &CCASTProjectView::OnInnerfactSet)
 	ON_WM_KEYDOWN()
+	ON_COMMAND(ID_AUXLIDATA_SHOW, &CCASTProjectView::OnAuxlidataShow)
 END_MESSAGE_MAP()
 
 // CCASTProjectView 构造/析构
@@ -71,6 +72,7 @@ BOOL CCASTProjectView::PreCreateWindow(CREATESTRUCT& cs)
 	m_bPBPause = false;
 	m_MousePos.x = 0;
 	m_MousePos.y = 0;
+	m_bAuxlParse = true;
 	return CScrollView::PreCreateWindow(cs);
 }
 
@@ -581,4 +583,23 @@ void CCASTProjectView::OnInnerfactSet()
 		//read param from the dlg class
 	}
 	//do the testing
+}
+
+void CCASTProjectView::OnAuxlidataShow()
+{
+	// TODO: 在此添加命令处理程序代码
+	CAST_IMG catimg;
+	BYTE* pFData = NULL;
+	AxlDSDlg.Create(IDD_DIALOG_AUXLDATA, NULL);
+	char fname[64] = { 0 };
+	for (int i = 0; i != 100; ++i)
+	{
+		sprintf_s(fname, "F:\\vsproject\\CAST\\src_data\\%d", i);
+		catimg.ReadFile(fname, pFData);
+		AxlDSDlg.ListInsert(pFData, m_bAuxlParse);
+		delete[]pFData;
+		pFData = NULL;
+		memset(fname, 0, 64);
+	}
+	AxlDSDlg.ShowWindow(SW_SHOW);
 }

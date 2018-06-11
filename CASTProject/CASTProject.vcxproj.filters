@@ -60,6 +60,9 @@
     <ClInclude Include="ShowDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AuxlDataShowDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CASTProject.cpp">
@@ -93,6 +96,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ShowDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AuxlDataShowDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

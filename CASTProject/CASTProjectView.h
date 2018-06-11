@@ -8,6 +8,7 @@
 
 #include "include/CAST_SrcData.h"
 #include "FindDataDlg.h"
+#include "AuxlDataShowDlg.h"
 
 typedef struct
 {
@@ -85,6 +86,9 @@ public:
 	CPoint m_MousePos;
 	//find data
 	FindDataDlg FDDlg;
+	//auxiliary data
+	AuxlDataShowDlg AxlDSDlg;
+	bool m_bAuxlParse;
 public:
 	CAST_IMG CastImg;
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
@@ -110,6 +114,7 @@ public:
 	afx_msg void OnImgcmpSet();
 	afx_msg void OnInnerfactSet();
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnAuxlidataShow();
 };
 
 #ifndef _DEBUG  // CASTProjectView.cpp 中的调试版本

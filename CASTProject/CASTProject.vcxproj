@@ -186,6 +186,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AuxlDataShowDlg.h" />
     <ClInclude Include="CASTProject.h" />
     <ClInclude Include="CASTProjectDoc.h" />
     <ClInclude Include="CASTProjectView.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AuxlDataShowDlg.cpp" />
     <ClCompile Include="CASTProject.cpp" />
     <ClCompile Include="CASTProjectDoc.cpp" />
     <ClCompile Include="CASTProjectView.cpp" />
