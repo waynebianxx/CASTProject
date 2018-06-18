@@ -9,6 +9,8 @@
 #include "include/CAST_SrcData.h"
 #include "FindDataDlg.h"
 #include "AuxlDataShowDlg.h"
+#include "HealthCheckDlg.h"
+#include "ImgCmpSetDlg.h"
 
 typedef struct
 {
@@ -67,6 +69,7 @@ public:
 	afx_msg void OnPixinfo();
 
 public:
+	vector<CString> m_CurPahtAllFile;
 	//tool tip
 	CToolTipCtrl m_ToolTip; 
 	CString m_TipStr;
@@ -89,6 +92,10 @@ public:
 	//auxiliary data
 	AuxlDataShowDlg AxlDSDlg;
 	bool m_bAuxlParse;
+	//health check
+	HealthCheckDlg HealChDlg;
+	//img compare
+	ImgCmpSetDlg ICSDlg;
 public:
 	CAST_IMG CastImg;
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
@@ -100,6 +107,7 @@ public:
 	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
 	int DrawMemDc(bool b_create);
 	void BrowseCurrentAllFile(CString strDir);
+	CString SelFilePath();
 
 	//in this function, file load to CAST_SrcData, create cImage, copy data to cImage, set scroll view size, initial rect
 	int FileToShow(CString strFileName);

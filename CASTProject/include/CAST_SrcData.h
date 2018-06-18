@@ -2,6 +2,7 @@
 
 #include <atlimage.h>
 #include <vector>
+#include <string>
 
 typedef union
 {
@@ -452,7 +453,7 @@ public:
 	int m_CImgH;
 	void LoadFile(const char* pFileName);
 	void ReadFile(const char* pFileName, BYTE*& pData);
-	void ReadMultiFile(std::vector<const char*> pFileNameVec, std::vector<BYTE*>& pDataVec);
+	void ReadMultiFile(std::vector<std::string>& pFileNameVec, std::vector<BYTE*>& pDataVec);
 	void DataCfg();
 	inline BYTE GetPixValue(int x, int y) const {
 		return *((BYTE*)m_pImgData + y * m_LinePitch + x);

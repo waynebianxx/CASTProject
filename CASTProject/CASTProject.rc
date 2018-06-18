@@ -109,38 +109,6 @@ END
 
 IDR_MAINFRAME MENU
 BEGIN
-    POPUP "文件(&F)"
-    BEGIN
-        MENUITEM "新建(&N)\tCtrl+N",              ID_FILE_NEW
-        MENUITEM "打开(&O)...\tCtrl+O",           ID_FILE_OPEN
-        MENUITEM "保存(&S)\tCtrl+S",              ID_FILE_SAVE
-        MENUITEM "另存为(&A)...",                  ID_FILE_SAVE_AS
-        MENUITEM SEPARATOR
-        MENUITEM "打印(&P)...\tCtrl+P",           ID_FILE_PRINT
-        MENUITEM "打印预览(&V)",                    ID_FILE_PRINT_PREVIEW
-        MENUITEM "打印设置(&R)...",                 ID_FILE_PRINT_SETUP
-        MENUITEM SEPARATOR
-        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1, GRAYED
-        MENUITEM SEPARATOR
-        MENUITEM "退出(&X)",                      ID_APP_EXIT
-    END
-    POPUP "编辑(&E)"
-    BEGIN
-        MENUITEM "撤消(&U)\tCtrl+Z",              ID_EDIT_UNDO
-        MENUITEM SEPARATOR
-        MENUITEM "剪切(&T)\tCtrl+X",              ID_EDIT_CUT
-        MENUITEM "复制(&C)\tCtrl+C",              ID_EDIT_COPY
-        MENUITEM "粘贴(&P)\tCtrl+V",              ID_EDIT_PASTE
-    END
-    POPUP "视图(&V)"
-    BEGIN
-        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
-        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
-    END
-    POPUP "帮助(&H)"
-    BEGIN
-        MENUITEM "关于 CASTProject(&A)...",       ID_APP_ABOUT
-    END
     POPUP "显示"
     BEGIN
         MENUITEM "载入图像",                        ID_LoadFile
@@ -160,6 +128,16 @@ BEGIN
             MENUITEM "时钟频率曲线",                      ID_32787
         END
         MENUITEM "显示",                          ID_AUXLIDATA_SHOW
+    END
+    POPUP "健康状态检查"
+    BEGIN
+        MENUITEM "静态检查",                        ID_HLTHCHK_STATIC
+        MENUITEM "动态检查",                        ID_HLTHCHK_DYNMC
+        MENUITEM "设置",                          ID_HEALTH_SET
+    END
+    POPUP "图像比对"
+    BEGIN
+        MENUITEM "设置",                          ID_IMGCMP_SET
     END
     POPUP "辐射定标分析"
     BEGIN
@@ -191,16 +169,6 @@ BEGIN
     BEGIN
         MENUITEM "设置",                          ID_INNRFCT_SET
         MENUITEM "曲线优化",                        ID_INNRFCT_CUVP
-    END
-    POPUP "健康状态检查"
-    BEGIN
-        MENUITEM "静态检查",                        ID_HLTHCHK_STATIC
-        MENUITEM "动态检查",                        ID_HLTHCHK_DYNMC
-        MENUITEM "设置",                          ID_HEALTH_SET
-    END
-    POPUP "图像比对"
-    BEGIN
-        MENUITEM "设置",                          ID_IMGCMP_SET
     END
 END
 
@@ -311,23 +279,21 @@ BEGIN
     LTEXT           "滤波档位",IDC_STATIC,167,64,27,8
     LTEXT           "箝位系数",IDC_STATIC,167,96,27,8
     LTEXT           "存放日期",IDC_STATIC,166,128,28,8
-    EDITTEXT        IDC_EDIT1,85,63,53,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT2,85,94,53,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT3,85,125,53,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT4,85,156,53,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT5,199,32,53,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT6,199,63,53,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT7,199,94,53,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT8,199,125,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_LINENUM,85,63,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_GAIN,85,94,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_INTTIME,85,125,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_SERIL,85,156,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_ALG,199,32,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_FILT,199,63,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_CLMP,199,94,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_SAVEDATE,199,125,53,12,ES_AUTOHSCROLL
     LTEXT           "相机标识",IDC_STATIC,50,32,27,8
-    EDITTEXT        IDC_EDIT9,85,32,53,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPSET_CAMERALAB,85,32,53,12,ES_AUTOHSCROLL
     LTEXT           "计算行数",IDC_STATIC,166,158,28,8
-    EDITTEXT        IDC_EDIT10,199,156,21,12,ES_AUTOHSCROLL
-    LTEXT           "-----",IDC_STATIC,223,157,16,8
-    EDITTEXT        IDC_EDIT11,241,156,21,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CMPCALLINENUM,199,156,37,12,ES_AUTOHSCROLL
     GROUPBOX        "CCD片内",IDC_STATIC,52,179,209,31
-    CONTROL         "正序",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,100,192,29,10
-    CONTROL         "倒序",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,185,192,29,10
+    CONTROL         "正序",IDC_RADIO_CMPSET_POSORD,"Button",BS_AUTORADIOBUTTON | WS_GROUP,100,192,29,10
+    CONTROL         "倒序",IDC_RADIO_CMPSET_NEGORD,"Button",BS_AUTORADIOBUTTON,185,192,29,10
 END
 
 IDD_DIALOG_FINDSET DIALOGEX 0, 0, 307, 199
@@ -460,6 +426,7 @@ BEGIN
     LTEXT           "%",IDC_STATIC,157,62,8,8
     LTEXT           "错行检查段数:",IDC_STATIC,61,124,52,8
     EDITTEXT        IDC_EDIT_ERRLINE_STACKNUM,117,121,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STAT_SHOW,185,76,102,14,ES_AUTOHSCROLL
 END
 
 

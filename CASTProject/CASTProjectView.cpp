@@ -14,10 +14,7 @@
 #include "CASTProjectView.h"
 #include "ShowDlg.h"
 #include "PlayBackSetDlg.h"
-#include "ImgCmpSetDlg.h"
 #include "InnerFactTestSetDlg.h"
-
-#include "include/PyInterface.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -182,14 +179,14 @@ int CCASTProjectView::FileToShow(CString strFileName)
 void CCASTProjectView::OnLoadfile()
 {
 	// TODO: 在此添加命令处理程序代码
-// 	CFileDialog dlg(TRUE, _T(".raw"), _T("*.raw"), OFN_HIDEREADONLY |
-// 		OFN_OVERWRITEPROMPT, _T("raw文件(*.raw)|*.raw|JPEG文件(*.JPEG)|*.JPEG|位图文件(*.bmp)|*.bmp||"));
-// 	if (dlg.DoModal() == IDOK)
-// 	{
-// 		CString fName = dlg.GetPathName();
-//		FileToShow(fName);
-// 	}
-	FileToShow(_T("L32_mc_t0019_tdi32222_g11111_C1B_0.raw"));
+	CFileDialog dlg(TRUE, _T(".raw"), _T("*.raw"), OFN_HIDEREADONLY |
+		OFN_OVERWRITEPROMPT, _T("raw文件(*.raw)|*.raw|JPEG文件(*.JPEG)|*.JPEG|位图文件(*.bmp)|*.bmp||"));
+	if (dlg.DoModal() == IDOK)
+	{
+		CString fName = dlg.GetPathName();
+		FileToShow(fName);
+	}
+/*	FileToShow(_T("L32_mc_t0019_tdi32222_g11111_C1B_0.raw"));*/
 	DrawMemDc(true);
 }
 
@@ -432,6 +429,7 @@ int CCASTProjectView::DrawMemDc(bool b_create)
 
 void CCASTProjectView::BrowseCurrentAllFile(CString strDir)
 {
+	m_CurPahtAllFile.clear();
 	if (strDir == _T(""))
 		return;
 	else
@@ -450,7 +448,7 @@ void CCASTProjectView::BrowseCurrentAllFile(CString strDir)
 		if (finder.IsDirectory() && !finder.IsDots())
 			BrowseCurrentAllFile(strPath);
 		else if (!finder.IsDirectory() && !finder.IsDots())
-			m_PBParam.str_Path.push_back(strPath);
+			m_CurPahtAllFile.push_back(strPath);
 		else
 			continue;
 	}
@@ -464,6 +462,7 @@ void CCASTProjectView::OnPlayback()
 	if (IDOK == PBDlg.DoModal())
 	{
 		BrowseCurrentAllFile(PBDlg.strPath);
+		m_PBParam.str_Path = m_CurPahtAllFile;
 		m_PBParam.m_SkipFnum = PBDlg.iSkipFrm;
 		m_PBParam.m_TimeIntvl = PBDlg.iSpeed;
 		m_PBParam.m_ShowMode = PBDlg.bNomalShow;
@@ -569,12 +568,10 @@ void CCASTProjectView::OnFind()
 void CCASTProjectView::OnImgcmpSet()
 {
 	// TODO: 在此添加命令处理程序代码
-// 	ImgCmpSetDlg ICSDlg;
-// 	if (ICSDlg.DoModal())
-// 	{
-// 		//read param from the dlg class
-// 	}
-	test_base();
+	CString ParserPath = SelFilePath();
+	BrowseCurrentAllFile(ParserPath);
+	ICSDlg.m_FNameVecCstr = m_CurPahtAllFile;
+	ICSDlg.DoModal();
 	//do the compare
 }
 
@@ -593,31 +590,68 @@ void CCASTProjectView::OnInnerfactSet()
 void CCASTProjectView::OnAuxlidataShow()
 {
 	// TODO: 在此添加命令处理程序代码
-	CAST_IMG catimg;
+	CString ParserPath = SelFilePath();
+	BrowseCurrentAllFile(ParserPath);
+	CAST_IMG castimg;
 	BYTE* pFData = NULL;
 	AxlDSDlg.Create(IDD_DIALOG_AUXLDATA, NULL);
-	char fname[64] = { 0 };
-	for (int i = 0; i != 100; ++i)
+	int fnum = m_CurPahtAllFile.size();
+	for (int i = 0; i != fnum; ++i)
 	{
-		sprintf_s(fname, "F:\\vsproject\\CAST\\src_data\\%d", i);
-		catimg.ReadFile(fname, pFData);
+		string strName = CT2A(m_CurPahtAllFile[i].GetBuffer());
+		castimg.ReadFile(strName.c_str(), pFData);
 		AxlDSDlg.ListInsert(pFData, m_bAuxlParse);
 		delete[]pFData;
 		pFData = NULL;
-		memset(fname, 0, 64);
 	}
 	AxlDSDlg.ShowWindow(SW_SHOW);
+	AxlDSDlg.ShowPlot();
 }
 
+CString CCASTProjectView::SelFilePath()
+{
+	TCHAR           szFolderPath[MAX_PATH] = { 0 };
+	CString         strFolderPath = TEXT("");
+	BROWSEINFO      sInfo;
+	::ZeroMemory(&sInfo, sizeof(BROWSEINFO));
+	sInfo.pidlRoot = 0;
+	sInfo.lpszTitle = _T("Select File Path");
+	sInfo.ulFlags = BIF_RETURNONLYFSDIRS | BIF_EDITBOX | BIF_DONTGOBELOWDOMAIN;
+	sInfo.lpfn = NULL;
+	// 显示文件夹选择对话框  
+	LPITEMIDLIST lpidlBrowse = ::SHBrowseForFolder(&sInfo);
+	if (lpidlBrowse != NULL)
+	{
+		// 取得文件夹名  
+		if (::SHGetPathFromIDList(lpidlBrowse, szFolderPath))
+		{
+			strFolderPath = szFolderPath;
+		}
+	}
+	if (lpidlBrowse != NULL)
+	{
+		::CoTaskMemFree(lpidlBrowse);
+	}
+	return strFolderPath;
+}
 
 void CCASTProjectView::OnHlthchkStatic()
 {
 	// TODO: 在此添加命令处理程序代码
-
+	CString ParserPath = SelFilePath();
+	BrowseCurrentAllFile(ParserPath);
+	HealChDlg.m_bStaticCh = true;
+	HealChDlg.m_FNameVecCstr = m_CurPahtAllFile;
+	HealChDlg.DoModal();
 }
 
 
 void CCASTProjectView::OnHlthchkDynmc()
 {
 	// TODO: 在此添加命令处理程序代码
+	CString ParserPath = SelFilePath();
+	BrowseCurrentAllFile(ParserPath);
+	HealChDlg.m_bStaticCh = false;
+	HealChDlg.m_FNameVecCstr = m_CurPahtAllFile;
+	HealChDlg.DoModal();
 }

@@ -68,6 +68,19 @@
 #define IDC_EDIT_ERRLINE_THR            1033
 #define IDC_EDIT_ERRLINE_THR2           1034
 #define IDC_EDIT_ERRLINE_STACKNUM       1034
+#define IDC_EDIT_STAT_SHOW              1035
+#define IDC_EDIT_CMPCALLINENUM          1036
+#define IDC_EDIT_CMPSET_LINENUM         1037
+#define IDC_EDIT_CMPSET_CAMERALAB       1038
+#define IDC_EDIT_CMPSET_ALG             1039
+#define IDC_EDIT_CMPSET_FILT            1040
+#define IDC_EDIT_CMPSET_GAIN            1041
+#define IDC_EDIT_CMPSET_CLMP            1042
+#define IDC_EDIT_CMPSET_INTTIME         1043
+#define IDC_EDIT_CMPSET_SAVEDATE        1044
+#define IDC_EDIT_CMPSET_SERIL           1045
+#define IDC_RADIO_CMPSET_POSORD         1046
+#define IDC_RADIO_CMPSET_NEGORD         1047
 #define ID_32771                        32771
 #define ID_LoadFile                     32772
 #define ID_32773                        32773
@@ -141,7 +154,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        317
 #define _APS_NEXT_COMMAND_VALUE         32837
-#define _APS_NEXT_CONTROL_VALUE         1035
+#define _APS_NEXT_CONTROL_VALUE         1048
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
