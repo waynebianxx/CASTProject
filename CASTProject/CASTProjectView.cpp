@@ -17,6 +17,8 @@
 #include "ImgCmpSetDlg.h"
 #include "InnerFactTestSetDlg.h"
 
+#include "include/PyInterface.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -49,6 +51,8 @@ BEGIN_MESSAGE_MAP(CCASTProjectView, CScrollView)
 	ON_COMMAND(ID_INNRFCT_SET, &CCASTProjectView::OnInnerfactSet)
 	ON_WM_KEYDOWN()
 	ON_COMMAND(ID_AUXLIDATA_SHOW, &CCASTProjectView::OnAuxlidataShow)
+	ON_COMMAND(ID_HLTHCHK_STATIC, &CCASTProjectView::OnHlthchkStatic)
+	ON_COMMAND(ID_HLTHCHK_DYNMC, &CCASTProjectView::OnHlthchkDynmc)
 END_MESSAGE_MAP()
 
 // CCASTProjectView 构造/析构
@@ -565,11 +569,12 @@ void CCASTProjectView::OnFind()
 void CCASTProjectView::OnImgcmpSet()
 {
 	// TODO: 在此添加命令处理程序代码
-	ImgCmpSetDlg ICSDlg;
-	if (ICSDlg.DoModal())
-	{
-		//read param from the dlg class
-	}
+// 	ImgCmpSetDlg ICSDlg;
+// 	if (ICSDlg.DoModal())
+// 	{
+// 		//read param from the dlg class
+// 	}
+	test_base();
 	//do the compare
 }
 
@@ -602,4 +607,17 @@ void CCASTProjectView::OnAuxlidataShow()
 		memset(fname, 0, 64);
 	}
 	AxlDSDlg.ShowWindow(SW_SHOW);
+}
+
+
+void CCASTProjectView::OnHlthchkStatic()
+{
+	// TODO: 在此添加命令处理程序代码
+
+}
+
+
+void CCASTProjectView::OnHlthchkDynmc()
+{
+	// TODO: 在此添加命令处理程序代码
 }

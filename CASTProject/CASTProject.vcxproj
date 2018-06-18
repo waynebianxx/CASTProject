@@ -115,9 +115,11 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>C:\Users\Administrator\Anaconda3\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -165,11 +167,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Anaconda3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Users\Administrator\Anaconda3\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -191,8 +195,11 @@
     <ClInclude Include="CASTProjectDoc.h" />
     <ClInclude Include="CASTProjectView.h" />
     <ClInclude Include="FindDataDlg.h" />
+    <ClInclude Include="HealthCheckDlg.h" />
     <ClInclude Include="ImgCmpSetDlg.h" />
     <ClInclude Include="include\CAST_SrcData.h" />
+    <ClInclude Include="include\matplotlibcpp.h" />
+    <ClInclude Include="include\PyInterface.h" />
     <ClInclude Include="InnerFactTestSetDlg.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="PlayBackSetDlg.h" />
@@ -207,12 +214,14 @@
     <ClCompile Include="CASTProjectDoc.cpp" />
     <ClCompile Include="CASTProjectView.cpp" />
     <ClCompile Include="FindDataDlg.cpp" />
+    <ClCompile Include="HealthCheckDlg.cpp" />
     <ClCompile Include="ImgCmpSetDlg.cpp" />
     <ClCompile Include="InnerFactTestSetDlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="PlayBackSetDlg.cpp" />
     <ClCompile Include="ShowDlg.cpp" />
     <ClCompile Include="src\CAST_SrcData.cpp" />
+    <ClCompile Include="src\PyInterface.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

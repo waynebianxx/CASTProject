@@ -9,6 +9,7 @@
 #define IDD_DIALOG_AUXLDATA             310
 #define IDD_DIALOG_SHOWSET              311
 #define IDD_DIALOG2                     313
+#define IDD_DIALOG_HEALTH_SET           314
 #define IDD_DIALOG_PLAYBACKSET          315
 #define IDD_DIALOG4                     319
 #define IDD_DIALOG_FINDSET              319
@@ -61,6 +62,12 @@
 #define IDC_RADIO_CUR                   1027
 #define IDC_RADIO_SUB                   1028
 #define IDC_LIST_AUXLDATA               1029
+#define IDC_EDIT_BAD_THR                1030
+#define IDC_EDIT_SKIP_THR               1031
+#define IDC_EDIT_SPLC_NUM               1032
+#define IDC_EDIT_ERRLINE_THR            1033
+#define IDC_EDIT_ERRLINE_THR2           1034
+#define IDC_EDIT_ERRLINE_STACKNUM       1034
 #define ID_32771                        32771
 #define ID_LoadFile                     32772
 #define ID_32773                        32773
@@ -125,14 +132,16 @@
 #define ID_IMGCMP_SET                   32832
 #define ID_32833                        32833
 #define ID_AUXLIDATA_SHOW               32834
+#define ID_32835                        32835
+#define ID_HEALTH_SET                   32836
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        313
-#define _APS_NEXT_COMMAND_VALUE         32835
-#define _APS_NEXT_CONTROL_VALUE         1030
+#define _APS_NEXT_RESOURCE_VALUE        317
+#define _APS_NEXT_COMMAND_VALUE         32837
+#define _APS_NEXT_CONTROL_VALUE         1035
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

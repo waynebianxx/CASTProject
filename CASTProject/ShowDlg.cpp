@@ -33,6 +33,7 @@ BEGIN_MESSAGE_MAP(ShowDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_SLL, &ShowDlg::OnBnClickedButtonSll)
 	ON_WM_LBUTTONUP()
 	ON_WM_HSCROLL()
+	ON_BN_CLICKED(IDCANCEL, &ShowDlg::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 
@@ -82,4 +83,11 @@ void ShowDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	SetDlgItemInt(IDC_EDIT_HB, 15 - m_SldPos);
 	SetDlgItemInt(IDC_EDIT_LB, 7 - m_SldPos);
 	CDialogEx::OnHScroll(nSBCode, nPos, pScrollBar);
+}
+
+
+void ShowDlg::OnBnClickedCancel()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CDialogEx::OnCancel();
 }

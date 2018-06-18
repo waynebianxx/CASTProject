@@ -34,6 +34,16 @@ void CAST_IMG::ReadFile(const char* pFileName, BYTE*& pData)
 	return;
 }
 
+void CAST_IMG::ReadMultiFile(std::vector<const char*> pFileNameVec, std::vector<BYTE*>& pDataVec)
+{
+	int fnum = pFileNameVec.size();
+#ifdef _DEBUG
+	assert(fnum == pDataVec.size());
+#endif // DEBUG
+	for (int i=0;i!=fnum;++i)
+		ReadFile(pFileNameVec[i], pDataVec[i]);
+}
+
 void CAST_IMG::LoadFile(const char* pFileName)
 {
 	//read file

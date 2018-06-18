@@ -115,6 +115,8 @@ public:
 	afx_msg void OnInnerfactSet();
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnAuxlidataShow();
+	afx_msg void OnHlthchkStatic();
+	afx_msg void OnHlthchkDynmc();
 };
 
 #ifndef _DEBUG  // CASTProjectView.cpp 中的调试版本

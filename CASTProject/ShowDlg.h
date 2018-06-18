@@ -28,4 +28,5 @@ public:
 	afx_msg void OnBnClickedButtonSll();
 	int m_SldPos;
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg void OnBnClickedCancel();
 };

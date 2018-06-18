@@ -63,6 +63,15 @@
     <ClInclude Include="AuxlDataShowDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="HealthCheckDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PyInterface.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="include\matplotlibcpp.h">
+      <Filter>common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CASTProject.cpp">
@@ -100,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="AuxlDataShowDlg.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthCheckDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PyInterface.cpp">
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
